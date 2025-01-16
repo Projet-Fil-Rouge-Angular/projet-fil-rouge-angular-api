@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "name": "Introduction à Angular",
+    "description": "Apprenez les bases d’Angular.",
+    "duration": 5,
+    "contentMarkdown": "## Bienvenue sur le cours d'Angular\nVoici le contenu du cours."
+  },
+  {
+    "id": 2,
+    "name": "TypeScript Avancé",
+    "description": "Maîtrisez les fonctionnalités avancées de TypeScript.",
+    "duration": 3,
+    "contentMarkdown": "### Introduction à TypeScript Avancé\n* Types avancés\n* Décorateurs\n* Interfaces dynamiques"
+  },
+  {
+    "id": 4,
+    "name": "Node.js pour les Débutants",
+    "description": "Découvrez comment créer des applications serveur avec Node.js.",
+    "duration": 6,
+    "contentMarkdown": "## Démarrage avec Node.js\nVoici les étapes pour bien commencer."
+  },
+  {
+    "id": 5,
+    "name": "Bases de MongoDB",
+    "description": "Introduction à la base de données NoSQL MongoDB.",
+    "duration": 3,
+    "contentMarkdown": "### Introduction à MongoDB\n- Collections\n- Documents\n- Requêtes"
+  },
+  {
+    "name": "Nouveau Cours",
+    "description": "Description du cours.",
+    "duration": 4,
+    "contentMarkdown": "## Nouveau contenu en markdown",
+    "id": 6
+  }
+]
