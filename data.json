@@ -1,37 +1,41 @@
 [
   {
-    "id": 1,
-    "name": "Introduction à Angular",
-    "description": "Apprenez les bases d’Angular.",
-    "duration": 5,
-    "contentMarkdown": "## Bienvenue sur le cours d'Angular\nVoici le contenu du cours."
-  },
-  {
     "id": 2,
     "name": "TypeScript Avancé",
     "description": "Maîtrisez les fonctionnalités avancées de TypeScript.",
     "duration": 3,
-    "contentMarkdown": "### Introduction à TypeScript Avancé\n* Types avancés\n* Décorateurs\n* Interfaces dynamiques"
+    "durationUnit": "heures",
+    "contentMarkdown": "# TypeScript Avancé Contenu du Cours\n\n ---\n\n ### Introduction\n\n Bienvenue dans le cours avancé sur TypeScript. Ce langage, développé par Microsoft, offre des outils puissants pour créer des applications JavaScript robustes et maintenables. Ce cours est conçu pour approfondir vos connaissances en TypeScript et vous permettre d'utiliser ses fonctionnalités avancées de manière efficace.\n---\n\n## Chapitre 1 : Types Avancés\n\nLes types sont l'un des éléments fondamentaux de TypeScript. Dans ce chapitre, nous allons explorer des concepts avancés :\n\n### Types Conditionnels\nLes types conditionnels permettent de créer des types dynamiques basés sur des conditions.\n\nExemple :\n```typescript\ntype IsString<T> = T extends string ? true : false;\nlet test1: IsString<string>; // true\nlet test2: IsString<number>; // false\n```\n\n### Mapped Types\nLes mapped types permettent de créer de nouveaux types à partir de types existants en mappant leurs propriétés.\n\nExemple :\n```typescript\ntype Readonly<T> = {\n  readonly [P in keyof T]: T[P];\n};\ninterface User {\n  name: string;\n  age: number;\n}\nconst user: Readonly<User> = {\n  name: 'Alice',\n  age: 25\n};\n// user.age = 26; // Erreur : la propriété est en lecture seule\n```\n\n### Utility Types\nExplorez des types prédéfinis tels que `Partial`, `Pick`, et `Record` pour manipuler facilement vos interfaces.\n\nExemple :\n```typescript\ninterface Todo {\n  title: string;\n  description: string;\n}\nconst todo: Partial<Todo> = {\n  title: 'Acheter des courses'\n};\n```\n\n---\n\n## Chapitre 2 : Décorateurs\n\nLes décorateurs sont des fonctions spéciales qui peuvent être appliquées à des classes, des méthodes, des propriétés ou des paramètres.\n\n### Décorateurs de Classe\nUn décorateur de classe peut étendre ou modifier une classe existante.\n\nExemple :\n```typescript\nfunction Seal(constructor: Function) {\n  Object.seal(constructor);\n  Object.seal(constructor.prototype);\n}\n@Seal\nclass MyClass {\n  property = 'test';\n}\n```\n\n### Décorateurs de Propriété\nIls permettent de personnaliser le comportement des propriétés.\n\nExemple :\n```typescript\nfunction Readonly(target: any, propertyKey: string) {\n  Object.defineProperty(target, propertyKey, {\n    writable: false\n  });\n}\nclass Example {\n  @Readonly\n  name: string = 'Fixed';\n}\n```\n\n---\n\n## Chapitre 3 : Interfaces Dynamiques\n\n### Combinaison de Types et Interfaces\nCombinez les types et interfaces pour créer des modèles flexibles.\n\nExemple :\n```typescript\ninterface Person {\n  name: string;\n  age: number;\n}\ntype ExtendedPerson = Person & { address: string };\nconst individual: ExtendedPerson = {\n  name: 'John',\n  age: 30,\n  address: '123 Rue Principale'\n};\n```\n\n### Index Signatures\nUtilisez des signatures d'index pour définir des objets avec des clés dynamiques.\n\nExemple :\n```typescript\ninterface StringDictionary {\n  [key: string]: string;\n}\nconst myDictionary: StringDictionary = {\n  key1: 'valeur1',\n  key2: 'valeur2'\n};\n```\n\n---",
+    "imageUrl": "https://cdn.icon-icons.com/icons2/2415/PNG/512/typescript_original_logo_icon_146317.png",
+    "level": "Avancé",
+    "prerequisites": ["Connaissances de base en TypeScript", "Expérience en programmation JavaScript"],
+    "tags": ["TypeScript", "Frontend", "JavaScript"],
+    "languages": ["Français", "Anglais"]
   },
   {
     "id": 4,
     "name": "Node.js pour les Débutants",
     "description": "Découvrez comment créer des applications serveur avec Node.js.",
     "duration": 6,
-    "contentMarkdown": "## Démarrage avec Node.js\nVoici les étapes pour bien commencer."
+    "durationUnit": "heures",
+    "contentMarkdown": "## Démarrage avec Node.js\nVoici les étapes pour bien commencer.",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg",
+    "level": "Débutant",
+    "prerequisites": ["Notions de base en JavaScript"],
+    "tags": ["Node.js", "Backend", "JavaScript"],
+    "languages": ["Français"]
   },
   {
     "id": 5,
     "name": "Bases de MongoDB",
     "description": "Introduction à la base de données NoSQL MongoDB.",
     "duration": 3,
-    "contentMarkdown": "### Introduction à MongoDB\n- Collections\n- Documents\n- Requêtes"
-  },
-  {
-    "name": "Nouveau Cours",
-    "description": "Description du cours.",
-    "duration": 4,
-    "contentMarkdown": "## Nouveau contenu en markdown",
-    "id": 6
+    "durationUnit": "heures",
+    "contentMarkdown": "### Introduction à MongoDB\n- Collections\n- Documents\n- Requêtes",
+    "imageUrl": "https://icon.icepanel.io/Technology/svg/MongoDB.svg",
+    "level": "Intermédiaire",
+    "prerequisites": ["Connaissances de base en bases de données"],
+    "tags": ["MongoDB", "NoSQL", "Backend"],
+    "languages": ["Français", "Anglais"]
   }
 ]

@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException, BadRequestException } from '@nestjs/common';
 import { Course } from './entities/course.entity';
 import * as fs from 'fs';
 import * as path from 'path';
@@ -30,6 +30,13 @@ export class CoursesService {
   }
 
   create(course: Course): Course {
+    const requiredFields = ['name', 'description', 'duration', 'contentMarkdown', 'imageUrl', 'level', 'prerequisites', 'tags'];
+    for (const field of requiredFields) {
+      if (!course[field] || (Array.isArray(course[field]) && course[field].length === 0)) {
+        throw new BadRequestException(`Field "${field}" is required and cannot be empty.`);
+      }
+    }
+
     const courses = this.loadCourses();
     course.id = courses.length > 0 ? courses[courses.length - 1].id + 1 : 1;
     courses.push(course);
