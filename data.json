@@ -5,12 +5,22 @@
     "description": "Maîtrisez les fonctionnalités avancées de TypeScript.",
     "duration": 3,
     "durationUnit": "heures",
-    "contentMarkdown": "# TypeScript Avancé Contenu du Cours\n\n ---\n\n ### Introduction\n\n Bienvenue dans le cours avancé sur TypeScript. Ce langage, développé par Microsoft, offre des outils puissants pour créer des applications JavaScript robustes et maintenables. Ce cours est conçu pour approfondir vos connaissances en TypeScript et vous permettre d'utiliser ses fonctionnalités avancées de manière efficace.\n---\n\n## Chapitre 1 : Types Avancés\n\nLes types sont l'un des éléments fondamentaux de TypeScript. Dans ce chapitre, nous allons explorer des concepts avancés :\n\n### Types Conditionnels\nLes types conditionnels permettent de créer des types dynamiques basés sur des conditions.\n\nExemple :\n```typescript\ntype IsString<T> = T extends string ? true : false;\nlet test1: IsString<string>; // true\nlet test2: IsString<number>; // false\n```\n\n### Mapped Types\nLes mapped types permettent de créer de nouveaux types à partir de types existants en mappant leurs propriétés.\n\nExemple :\n```typescript\ntype Readonly<T> = {\n  readonly [P in keyof T]: T[P];\n};\ninterface User {\n  name: string;\n  age: number;\n}\nconst user: Readonly<User> = {\n  name: 'Alice',\n  age: 25\n};\n// user.age = 26; // Erreur : la propriété est en lecture seule\n```\n\n### Utility Types\nExplorez des types prédéfinis tels que `Partial`, `Pick`, et `Record` pour manipuler facilement vos interfaces.\n\nExemple :\n```typescript\ninterface Todo {\n  title: string;\n  description: string;\n}\nconst todo: Partial<Todo> = {\n  title: 'Acheter des courses'\n};\n```\n\n---\n\n## Chapitre 2 : Décorateurs\n\nLes décorateurs sont des fonctions spéciales qui peuvent être appliquées à des classes, des méthodes, des propriétés ou des paramètres.\n\n### Décorateurs de Classe\nUn décorateur de classe peut étendre ou modifier une classe existante.\n\nExemple :\n```typescript\nfunction Seal(constructor: Function) {\n  Object.seal(constructor);\n  Object.seal(constructor.prototype);\n}\n@Seal\nclass MyClass {\n  property = 'test';\n}\n```\n\n### Décorateurs de Propriété\nIls permettent de personnaliser le comportement des propriétés.\n\nExemple :\n```typescript\nfunction Readonly(target: any, propertyKey: string) {\n  Object.defineProperty(target, propertyKey, {\n    writable: false\n  });\n}\nclass Example {\n  @Readonly\n  name: string = 'Fixed';\n}\n```\n\n---\n\n## Chapitre 3 : Interfaces Dynamiques\n\n### Combinaison de Types et Interfaces\nCombinez les types et interfaces pour créer des modèles flexibles.\n\nExemple :\n```typescript\ninterface Person {\n  name: string;\n  age: number;\n}\ntype ExtendedPerson = Person & { address: string };\nconst individual: ExtendedPerson = {\n  name: 'John',\n  age: 30,\n  address: '123 Rue Principale'\n};\n```\n\n### Index Signatures\nUtilisez des signatures d'index pour définir des objets avec des clés dynamiques.\n\nExemple :\n```typescript\ninterface StringDictionary {\n  [key: string]: string;\n}\nconst myDictionary: StringDictionary = {\n  key1: 'valeur1',\n  key2: 'valeur2'\n};\n```\n\n---",
+    "contentMarkdown": "# TypeScript Avancé Contenu du Cours\n\n---\n\n## Chapitre 1 : Types Avancés\n\nLes types sont l'un des éléments fondamentaux de TypeScript. Dans ce chapitre, nous allons explorer des concepts avancés :\n\n### Types Conditionnels\nLes types conditionnels permettent de créer des types dynamiques basés sur des conditions.\n\nExemple :\n```typescript\ntype IsString<T> = T extends string ? true : false;\nlet test1: IsString<string>; // true\nlet test2: IsString<number>; // false\n```\n\n### Mapped Types\nLes mapped types permettent de créer de nouveaux types à partir de types existants en mappant leurs propriétés.\n\nExemple :\n```typescript\ntype Readonly<T> = {\n  readonly [P in keyof T]: T[P];\n};\ninterface User {\n  name: string;\n  age: number;\n}\nconst user: Readonly<User> = {\n  name: 'Alice',\n  age: 25\n};\n// user.age = 26; // Erreur : la propriété est en lecture seule\n```\n\n### Utility Types\nExplorez des types prédéfinis tels que `Partial`, `Pick`, et `Record` pour manipuler facilement vos interfaces.\n\nExemple :\n```typescript\ninterface Todo {\n  title: string;\n  description: string;\n}\nconst todo: Partial<Todo> = {\n  title: 'Acheter des courses'\n};\n```\n\n---\n\n## Chapitre 2 : Décorateurs\n\nLes décorateurs sont des fonctions spéciales qui peuvent être appliquées à des classes, des méthodes, des propriétés ou des paramètres.\n\n### Décorateurs de Classe\nUn décorateur de classe peut étendre ou modifier une classe existante.\n\nExemple :\n```typescript\nfunction Seal(constructor: Function) {\n  Object.seal(constructor);\n  Object.seal(constructor.prototype);\n}\n@Seal\nclass MyClass {\n  property = 'test';\n}\n```\n\n### Décorateurs de Propriété\nIls permettent de personnaliser le comportement des propriétés.\n\nExemple :\n```typescript\nfunction Readonly(target: any, propertyKey: string) {\n  Object.defineProperty(target, propertyKey, {\n    writable: false\n  });\n}\nclass Example {\n  @Readonly\n  name: string = 'Fixed';\n}\n```\n\n---\n\n## Chapitre 3 : Interfaces Dynamiques\n\n### Combinaison de Types et Interfaces\nCombinez les types et interfaces pour créer des modèles flexibles.\n\nExemple :\n```typescript\ninterface Person {\n  name: string;\n  age: number;\n}\ntype ExtendedPerson = Person & { address: string };\nconst individual: ExtendedPerson = {\n  name: 'John',\n  age: 30,\n  address: '123 Rue Principale'\n};\n```\n\n### Index Signatures\nUtilisez des signatures d'index pour définir des objets avec des clés dynamiques.\n\nExemple :\n```typescript\ninterface StringDictionary {\n  [key: string]: string;\n}\nconst myDictionary: StringDictionary = {\n  key1: 'valeur1',\n  key2: 'valeur2'\n};\n```\n\n---",
     "imageUrl": "https://cdn.icon-icons.com/icons2/2415/PNG/512/typescript_original_logo_icon_146317.png",
     "level": "Avancé",
-    "prerequisites": ["Connaissances de base en TypeScript", "Expérience en programmation JavaScript"],
-    "tags": ["TypeScript", "Frontend", "JavaScript"],
-    "languages": ["Français", "Anglais"]
+    "prerequisites": [
+      "Connaissances de base en TypeScript",
+      "Expérience en programmation JavaScript"
+    ],
+    "tags": [
+      "TypeScript",
+      "Frontend",
+      "JavaScript"
+    ],
+    "languages": [
+      "Français",
+      "Anglais"
+    ]
   },
   {
     "id": 4,
@@ -18,12 +28,20 @@
     "description": "Découvrez comment créer des applications serveur avec Node.js.",
     "duration": 6,
     "durationUnit": "heures",
-    "contentMarkdown": "## Démarrage avec Node.js\nVoici les étapes pour bien commencer.",
+    "contentMarkdown": "# Node.js pour les Débutants Contenu du Cours\n\n---\n\n## Chapitre 1 : Introduction à Node.js\n\nNode.js est une plateforme d'exécution JavaScript côté serveur. Ce chapitre couvre les bases pour bien démarrer avec Node.js.\n\n### Qu'est-ce que Node.js ?\nNode.js permet d'exécuter du code JavaScript en dehors du navigateur en utilisant le moteur V8 de Google.\n\n### Installation de Node.js\nPour installer Node.js :\n1. Rendez-vous sur [nodejs.org](https://nodejs.org).\n2. Téléchargez la version LTS recommandée.\n3. Suivez les instructions d'installation pour votre système d'exploitation.\n\n### Votre premier script Node.js\n```javascript\n// Créez un fichier app.js\nconsole.log(\"Hello, Node.js!\");\n\n// Exécutez-le avec la commande :\n// node app.js\n```\n\n---\n\n## Chapitre 2 : Modules et Gestionnaire de Paquets (npm)\n\nNode.js utilise des modules pour organiser et réutiliser le code. Ce chapitre explore les modules natifs et npm (Node Package Manager).\n\n### Modules intégrés\nNode.js fournit des modules natifs comme `fs`, `http`, et `path`.\n\nExemple : utilisation du module `fs` pour lire un fichier :\n```javascript\nconst fs = require(\"fs\");\nfs.readFile(\"example.txt\", \"utf8\", (err, data) => {\n  if (err) throw err;\n  console.log(data);\n});\n```\n\n### npm\nnpm est utilisé pour installer des bibliothèques tierces.\n\n- Installer un package :\n```bash\nnpm install express\n```\n- Ajouter un package de développement :\n```bash\nnpm install nodemon --save-dev\n```\n\n---\n\n## Chapitre 3 : Création d'un Serveur Web\n\nNode.js excelle dans la création de serveurs HTTP. Ce chapitre explique comment créer un serveur de base.\n\n### Créer un serveur HTTP\n```javascript\nconst http = require(\"http\");\n\nconst server = http.createServer((req, res) => {\n  res.statusCode = 200;\n  res.setHeader(\"Content-Type\", \"text/plain\");\n  res.end(\"Hello, World!\");\n});\n\nserver.listen(3000, () => {\n  console.log(\"Serveur en écoute sur le port 3000\");\n});\n```\n\n### Gérer les routes\nAjoutez des routes pour gérer différentes requêtes :\n```javascript\nconst server = http.createServer((req, res) => {\n  if (req.url === \"/\") {\n    res.end(\"Page d'accueil\");\n  } else if (req.url === \"/about\") {\n    res.end(\"À propos de nous\");\n  } else {\n    res.statusCode = 404;\n    res.end(\"Page non trouvée\");\n  }\n});\n```\n\n---\n\n## Chapitre 4 : Utilisation d'Express.js\n\nExpress.js simplifie la création d'applications web avec Node.js. Ce chapitre couvre les bases d'Express.\n\n### Installation et configuration\n```bash\nnpm install express\n```\n\n### Création d'une application Express\n```javascript\nconst express = require(\"express\");\nconst app = express();\n\napp.get(\"/\", (req, res) => {\n  res.send(\"Bienvenue dans notre application Node.js avec Express!\");\n});\n\napp.listen(3000, () => {\n  console.log(\"Serveur Express en écoute sur le port 3000\");\n});\n```\n\n---\n\nCe contenu couvre les bases de Node.js pour vous permettre de développer vos premières applications serveur et de comprendre les concepts fondamentaux de cette plateforme puissante.",
     "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg",
     "level": "Débutant",
-    "prerequisites": ["Notions de base en JavaScript"],
-    "tags": ["Node.js", "Backend", "JavaScript"],
-    "languages": ["Français"]
+    "prerequisites": [
+      "Notions de base en JavaScript"
+    ],
+    "tags": [
+      "Node.js",
+      "Backend",
+      "JavaScript"
+    ],
+    "languages": [
+      "Français"
+    ]
   },
   {
     "id": 5,
@@ -31,11 +49,20 @@
     "description": "Introduction à la base de données NoSQL MongoDB.",
     "duration": 3,
     "durationUnit": "heures",
-    "contentMarkdown": "### Introduction à MongoDB\n- Collections\n- Documents\n- Requêtes",
+    "contentMarkdown": "# Bases de MongoDB Contenu du Cours\n\n---\n\n## Chapitre 1 : Introduction à MongoDB\n\nMongoDB est une base de données NoSQL orientée documents, conçue pour gérer de grandes quantités de données de manière flexible et évolutive.\n\n### Qu'est-ce que MongoDB ?\nMongoDB stocke les données sous forme de documents JSON, appelés BSON en interne, ce qui le rend idéal pour les applications modernes.\n\n### Installation de MongoDB\n1. Téléchargez MongoDB Community Edition sur [mongodb.com](https://www.mongodb.com/try/download/community).\n2. Suivez les instructions d'installation spécifiques à votre système d'exploitation.\n3. Lancez le serveur avec la commande :\n```bash\nmongod\n```\n\n---\n\n## Chapitre 2 : Concepts Clés\n\n### Bases de données et collections\nMongoDB organise les données dans des bases de données. Chaque base contient plusieurs collections.\n\n- Créer une base de données :\n```javascript\nuse myDatabase;\n```\n\n- Créer une collection :\n```javascript\ndb.createCollection(\"users\");\n```\n\n### Documents\nLes documents sont des objets JSON qui contiennent les données dans une collection.\n\nExemple de document :\n```json\n{\n  \"name\": \"Alice\",\n  \"age\": 30,\n  \"email\": \"alice@example.com\"\n}\n```\n\n---\n\n## Chapitre 3 : CRUD (Create, Read, Update, Delete)\n\nMongoDB fournit des commandes pour manipuler les données.\n\n### Create\nAjoutez un document dans une collection avec `insertOne` :\n```javascript\ndb.users.insertOne({\n  name: \"Bob\",\n  age: 25,\n  email: \"bob@example.com\"\n});\n```\n\nAjoutez plusieurs documents avec `insertMany` :\n```javascript\ndb.users.insertMany([\n  { name: \"Charlie\", age: 35 },\n  { name: \"Diane\", age: 28 }\n]);\n```\n\n### Read\nRecherchez des documents avec `find` :\n```javascript\ndb.users.find();\n```\n\nRecherchez avec un filtre :\n```javascript\ndb.users.find({ age: { $gte: 30 } });\n```\n\n### Update\nMettez à jour des documents avec `updateOne` :\n```javascript\ndb.users.updateOne(\n  { name: \"Alice\" },\n  { $set: { age: 31 } }\n);\n```\n\nMettez à jour plusieurs documents avec `updateMany` :\n```javascript\ndb.users.updateMany(\n  { age: { $lt: 30 } },\n  { $set: { status: \"young\" } }\n);\n```\n\n### Delete\nSupprimez un document avec `deleteOne` :\n```javascript\ndb.users.deleteOne({ name: \"Charlie\" });\n```\n\nSupprimez plusieurs documents avec `deleteMany` :\n```javascript\ndb.users.deleteMany({ age: { $gte: 35 } });\n```\n\n---\n\n## Chapitre 4 : Indexation et Performances\n\nLes index améliorent les performances des requêtes dans MongoDB.\n\n### Créer un index\nAjoutez un index sur un champ pour accélérer les recherches :\n```javascript\ndb.users.createIndex({ email: 1 });\n```\n\n### Rechercher avec un index\nMongoDB utilise l'index pour optimiser la requête :\n```javascript\ndb.users.find({ email: \"bob@example.com\" });\n```\n\n### Afficher les index\nListez tous les index d'une collection :\n```javascript\ndb.users.getIndexes();\n```\n\n---\n\n## Chapitre 5 : MongoDB avec Node.js\n\n### Installation de la bibliothèque MongoDB\nAjoutez le package MongoDB à votre projet Node.js :\n```bash\nnpm install mongodb\n```\n\n### Connexion à MongoDB\nUtilisez la bibliothèque pour se connecter à votre base de données :\n```javascript\nconst { MongoClient } = require(\"mongodb\");\nconst uri = \"mongodb://localhost:27017\";\nconst client = new MongoClient(uri);\n\nasync function run() {\n  try {\n    await client.connect();\n    console.log(\"Connecté à MongoDB\");\n    const db = client.db(\"myDatabase\");\n    const users = db.collection(\"users\");\n    const result = await users.insertOne({ name: \"Eve\", age: 29 });\n    console.log(\"Utilisateur ajouté :\", result);\n  } finally {\n    await client.close();\n  }\n}\nrun();\n```\n\n---\n\nCe contenu couvre les bases essentielles de MongoDB, de son utilisation en ligne de commande à son intégration avec Node.js, pour gérer des bases de données modernes et performantes.",
     "imageUrl": "https://icon.icepanel.io/Technology/svg/MongoDB.svg",
     "level": "Intermédiaire",
-    "prerequisites": ["Connaissances de base en bases de données"],
-    "tags": ["MongoDB", "NoSQL", "Backend"],
-    "languages": ["Français", "Anglais"]
+    "prerequisites": [
+      "Connaissances de base en bases de données"
+    ],
+    "tags": [
+      "MongoDB",
+      "NoSQL",
+      "Backend"
+    ],
+    "languages": [
+      "Français",
+      "Anglais"
+    ]
   }
 ]

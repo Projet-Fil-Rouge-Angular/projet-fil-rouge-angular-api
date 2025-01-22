@@ -8,7 +8,9 @@ import {
   Delete,
   HttpStatus,
   HttpException,
+  UseGuards
 } from '@nestjs/common';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { CoursesService } from './courses.service';
 import { Course } from './entities/course.entity';
 
@@ -43,6 +45,7 @@ export class CoursesController {
     }
   }
 
+  @UseGuards(JwtAuthGuard)
   @Post()
   create(@Body() course: Course) {
     const createdCourse = this.coursesService.create(course);
@@ -52,7 +55,7 @@ export class CoursesController {
       data: createdCourse,
     };
   }
-
+  @UseGuards(JwtAuthGuard)
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateData: Partial<Course>) {
     try {
@@ -69,7 +72,8 @@ export class CoursesController {
       );
     }
   }
-
+  
+  @UseGuards(JwtAuthGuard)
   @Delete(':id')
   remove(@Param('id') id: string) {
     try {
