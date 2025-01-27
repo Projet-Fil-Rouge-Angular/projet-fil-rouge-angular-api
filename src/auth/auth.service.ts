@@ -1,18 +1,19 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
-import { JwtService } from '@nestjs/jwt';
-import * as bcrypt from 'bcrypt';
-import * as fs from 'fs';
-import * as path from 'path';
-import { User } from './entities/user.entity';
+import { Injectable, UnauthorizedException } from "@nestjs/common";
+import { JwtService } from "@nestjs/jwt";
+import * as bcrypt from "bcrypt";
+import * as fs from "fs";
+import * as path from "path";
+import { User } from "./entities/user.entity";
+import { UserType } from "./entities/user_type.enum";
 
 @Injectable()
 export class AuthService {
-  private readonly usersFilePath = path.join(__dirname, '../../users.json');
+  private readonly usersFilePath = path.join(__dirname, "../../users.json");
 
   constructor(private readonly jwtService: JwtService) {}
 
   private loadUsers(): User[] {
-    const data = fs.readFileSync(this.usersFilePath, 'utf8');
+    const data = fs.readFileSync(this.usersFilePath, "utf8");
     return JSON.parse(data);
   }
 
@@ -23,11 +24,15 @@ export class AuthService {
       const { password, ...result } = user;
       return result;
     }
-    throw new UnauthorizedException('Invalid username or password');
+    throw new UnauthorizedException("Invalid username or password");
   }
 
   async login(user: User) {
-    const payload = { username: user.username, sub: user.id };
+    const payload = {
+      username: user.username,
+      sub: user.id,
+      type: UserType[user.type] || user.type,
+    };
     return {
       access_token: this.jwtService.sign(payload),
     };
