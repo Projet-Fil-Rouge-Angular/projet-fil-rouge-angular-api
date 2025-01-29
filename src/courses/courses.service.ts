@@ -6,7 +6,6 @@ import {
 import { Course } from "./entities/course.entity";
 import * as fs from "fs";
 import * as path from "path";
-import { DurationUnit } from "./entities/duration_unit.enum";
 
 @Injectable()
 export class CoursesService {
@@ -48,7 +47,7 @@ export class CoursesService {
       "level",
       "prerequisites",
       "tags",
-      "durationUnit",
+      "price"
     ];
     for (const field of requiredFields) {
       if (
@@ -59,12 +58,6 @@ export class CoursesService {
           `Field "${field}" is required and cannot be empty.`
         );
       }
-    }
-
-    if (!Object.values(DurationUnit).includes(course.durationUnit)) {
-      throw new BadRequestException(
-        `Invalid value for "durationUnit". Must be one of: ${Object.values(DurationUnit).join(", ")}`
-      );
     }
 
     const courses = this.loadCourses();
@@ -79,14 +72,6 @@ export class CoursesService {
     const course = courses.find((course) => course.id === id);
     if (!course) {
       throw new NotFoundException(`Course with ID ${id} not found`);
-    }
-    if (
-      updateData.durationUnit &&
-      !Object.values(DurationUnit).includes(updateData.durationUnit)
-    ) {
-      throw new BadRequestException(
-        `Invalid value for "durationUnit". Must be one of: ${Object.values(DurationUnit).join(", ")}`
-      );
     }
     Object.assign(course, updateData);
     this.saveCourses(courses);
